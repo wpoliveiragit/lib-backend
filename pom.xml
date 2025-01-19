@@ -13,8 +13,9 @@
 
 	<groupId>br.com.pegasus.lib</groupId>
 	<artifactId>lib-backend</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.0.0</version>
 	<name>lib-backend</name>
+	<packaging>jar</packaging>
 	<description>Projeto estudo lib</description>
 
 	<properties>
@@ -29,22 +30,17 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Annotation ASPECT -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-
 		<!-- UTILS -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<optional>true</optional> <!-- Lombok não será transitivo -->
+			<scope>provided</scope> <!-- Apenas em tempo de compilação -->
 		</dependency>
 
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
+		<dependency><!-- Criptografia -->
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
 		</dependency>
 
 		<!-- TEST -->
@@ -58,6 +54,8 @@
 
 	<build>
 		<plugins>
+
+			<!-- Plugin para compilação com processadores de anotação -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -70,7 +68,26 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
+			<!-- Excluir Lombok do JAR final -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>org/projectlombok/**</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/wpoliveiragit/maven-repository</url>
+		</repository>
+	</distributionManagement>
 
 </project>
