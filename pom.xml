@@ -38,6 +38,11 @@
 			<scope>provided</scope> <!-- Apenas em tempo de compilação -->
 		</dependency>
 
+		<dependency><!-- Criptografia -->
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+
 		<!-- TEST -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

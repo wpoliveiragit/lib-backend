@@ -11,7 +11,7 @@ public class TutorialMessage {
 
 	private @Autowired TutorialService anyService;
 
-	@Scheduled(fixedRate = 25)
+	@Scheduled(fixedRate = 500)
 	public void monitoring() throws Exception {
 		anyService.monitoring();
 	}
