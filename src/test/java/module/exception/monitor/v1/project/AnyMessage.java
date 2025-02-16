@@ -11,17 +11,9 @@ public class AnyMessage {
 
 	private final AnyService anyService;
 
-	@Scheduled(fixedRate = 25)
+	@Scheduled(fixedRate = 500)
 	public void monitoring() throws Exception {
 		anyService.monitorMethod();
-	}
-
-	@Scheduled(fixedRate = 25)
-	public void monitoring2() throws Exception {
-		try {
-			anyService.otherMethod();
-		} catch (Exception e) {
-		}
 	}
 
 }
